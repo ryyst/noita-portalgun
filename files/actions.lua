@@ -6,9 +6,9 @@ MOD_PATH = "mods/portalgun/files/"
 table.insert( actions,
 {
   id                = "PORTAL",
-  name              = "A Blue Portal",
+  name              = "Blue Portal",
   description       = "Enables higher cognitive functions involving portals",
-  sprite            = MOD_PATH .. "portalgun/projectile/magazine.png",
+  sprite            = MOD_PATH .. "projectile/magazine.png",
   type              = ACTION_TYPE_PROJECTILE,
   spawn_level       = "0,4,5,6",
   spawn_probability = "1,1,1,1",
@@ -16,9 +16,7 @@ table.insert( actions,
   mana              = 0,
   max_uses          = -1,
   action = function()
-
-    --add_projectile("data/entities/projectiles/deck/light_bullet.xml")
-    add_projectile(MOD_PATH .. "portalgun/projectile/entity.xml")
+    add_projectile(MOD_PATH .. "projectile/blue.xml")
     c.damage_critical_chance = 0
   end,
 })

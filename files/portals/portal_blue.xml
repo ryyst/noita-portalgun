@@ -1,0 +1,11 @@
+<Entity name="portal_blue" tags="portal_blue">
+  <Base file="mods/portalgun/files/portals/portal_base.xml">
+    <LightComponent
+      _enabled="1"
+      radius="40"
+      r="52"
+      g="191"
+      b="255"
+    ></LightComponent>
+  </Base>
+</Entity>

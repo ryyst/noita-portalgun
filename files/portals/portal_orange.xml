@@ -1,0 +1,15 @@
+<Entity name="portal_orange" tags="portal_orange">
+  <Base file="mods/portalgun/files/portals/portal_base.xml">
+    <ParticleEmitterComponent
+      emitted_material_name="spark"
+    ></ParticleEmitterComponent>
+
+    <LightComponent
+      _enabled="1"
+      radius="40"
+      r="255"
+      g="128"
+      b="0"
+    ></LightComponent>
+  </Base>
+</Entity>

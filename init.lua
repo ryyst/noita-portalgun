@@ -16,7 +16,7 @@ end
 function OnPlayerSpawned( player_entity )
   local inv_quick = EntityGetWithName("inventory_quick")
   local items_quick = {
-    "mods/portalgun/files/portalgun/gun.xml",
+    "mods/portalgun/files/gun/entity.xml",
   }
 
   give_player_items(inv_quick, items_quick)

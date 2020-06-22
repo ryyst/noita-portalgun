@@ -1,0 +1,35 @@
+<Entity name="$projectile_default">
+
+  <Base file="mods/portalgun/files/projectile/blue.xml" >
+    <ProjectileComponent
+      muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash.xml"
+    >
+      <config_explosion
+        explosion_sprite="data/particles/explosion_016_electric.xml"
+        load_this_entity="mods/portalgun/files/portals/portal_orange.xml"
+      ></config_explosion>
+    </ProjectileComponent>
+
+    <ParticleEmitterComponent
+      emitted_material_name="spark"
+    ></ParticleEmitterComponent>
+
+    <LightComponent
+      _enabled="1"
+      radius="40"
+      r="255"
+      g="128"
+      b="0"
+    ></LightComponent>
+
+  <!--SpriteComponent
+    _enabled="1"
+    alpha="1"
+    image_file="mods/portalgun/files/projectile/gfx.xml"
+    offset_y="2"
+    next_rect_animation=""
+    rect_animation=""
+  ></SpriteComponent-->
+  </Base>
+</Entity>
+
