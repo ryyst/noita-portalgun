@@ -11,12 +11,10 @@ function shoot()
   local vel = 650
 
   local angle = 0 - math.atan2( mouse_y - y, mouse_x - x )
-  local vel_x = math.cos( angle ) * vel
-  local vel_y = 0- math.sin( angle ) * vel
+  GlobalsSetValue("PG_ORANGE_SHOT_ANGLE", angle)  -- for later use
 
-  GamePrint("ANGLE")
-  GamePrint(angle)
-  GamePrint("/ANGLE")
+  local vel_x = math.cos( angle ) * vel
+  local vel_y = 0 - math.sin( angle ) * vel
 
   shoot_projectile(player, "mods/portalgun/files/projectile/orange.xml", x, y, vel_x, vel_y)
 

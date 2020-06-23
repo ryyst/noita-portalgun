@@ -1,6 +1,6 @@
 <Sprite
   default_animation="plasmaball"
-  filename="mods/portalgun/files/projectile/bullet.png"
+  filename="mods/portalgun/files/projectile/bullet_blue.png"
 >
   <RectAnimation
     frame_count="4"

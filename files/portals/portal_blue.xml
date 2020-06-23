@@ -7,5 +7,9 @@
       g="191"
       b="255"
     ></LightComponent>
+
+    <SpriteComponent
+      image_file="mods/portalgun/files/portals/blue.png"
+    ></SpriteComponent>
   </Base>
 </Entity>

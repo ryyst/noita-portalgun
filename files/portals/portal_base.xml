@@ -3,11 +3,14 @@
     _tags="enabled_in_world"
   ></VelocityComponent>
 
-  <!--SpriteComponent
+  <SpriteComponent
     _tags="enabled_in_world"
     _enabled="1"
-    image_file="mods/portalgun/files/gun/plasmagun.png"
-  ></SpriteComponent-->
+    offset_x="12"
+    offset_y="12"
+    emissive="1"
+    additive="1"
+  ></SpriteComponent>
 
   <LightComponent
     _enabled="1"
@@ -17,6 +20,25 @@
     b="255"
   ></LightComponent>
 
+  <MaterialSuckerComponent 
+    _tags="enabled_in_world,enabled_in_hand"
+    _enabled="1"
+    barrel_size="10000000"
+    num_cells_sucked_per_frame="5"
+  ></MaterialSuckerComponent>
+
+  <MaterialInventoryComponent 
+    _tags="enabled_in_world,enabled_in_hand"
+    drop_as_item="0"
+    on_death_spill="0"
+    kill_when_empty="0"
+  ></MaterialInventoryComponent>
+
+  <IngestionComponent 
+    ingestion_capacity="10000000"
+    overingestion_damage="0"
+  ></IngestionComponent>
+
   <ParticleEmitterComponent
     emitted_material_name="plasma_fading"
     gravity.y="0.0"
@@ -25,7 +47,7 @@
     count_min="16"
     count_max="20"
 
-    render_on_grid="1"
+    render_on_grid="0"
     render_back="0"
     collide_with_grid="0"
 
@@ -55,28 +77,28 @@
   ></ParticleEmitterComponent>
 
   <CollisionTriggerComponent
-    radius="10"
+    radius="15"
     required_tag="mortal"
     self_trigger="1"
     destroy_this_entity_when_triggered="0"
   ></CollisionTriggerComponent>
 
   <CollisionTriggerComponent
-    radius="10"
+    radius="15"
     required_tag="projectile"
     self_trigger="1"
     destroy_this_entity_when_triggered="0"
   ></CollisionTriggerComponent>
 
   <CollisionTriggerComponent
-    radius="10"
+    radius="15"
     required_tag="item_physics"
     self_trigger="1"
     destroy_this_entity_when_triggered="0"
   ></CollisionTriggerComponent>
 
   <CollisionTriggerComponent
-    radius="10"
+    radius="15"
     required_tag="hittable"
     self_trigger="1"
     destroy_this_entity_when_triggered="0"
@@ -88,9 +110,15 @@
 
   <LuaComponent
     _enabled="1"
-    script_source_file="mods/portalgun/files/portals/kill_clone.lua"
+    execute_on_added="1"
+    execute_every_n_frame="20"
+    script_source_file="mods/portalgun/files/portals/teleport_materials.lua"
+  ></LuaComponent>
+
+  <LuaComponent
+    _enabled="1"
+    script_source_file="mods/portalgun/files/portals/initiate.lua"
     execute_on_added="1"
     execute_times="1"
   ></LuaComponent>
 </Entity>
-

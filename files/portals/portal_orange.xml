@@ -11,5 +11,9 @@
       g="128"
       b="0"
     ></LightComponent>
+
+    <SpriteComponent
+      image_file="mods/portalgun/files/portals/orange.png"
+    ></SpriteComponent>
   </Base>
 </Entity>

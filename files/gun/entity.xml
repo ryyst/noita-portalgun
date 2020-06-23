@@ -1,7 +1,7 @@
 <Entity tags="custom_wand,GUN">
   <AbilityComponent
     _tags="item,disabled_at_start"
-    sprite_file="mods/portalgun/files/gun/plasmagun.png"
+    sprite_file="mods/portalgun/files/gun/portalgun.png"
     ui_name="Portalgun"
     add_these_child_actions="PORTAL"
     drop_as_item_on_death="1"
@@ -39,9 +39,9 @@
   <SpriteComponent
     _tags="item,enabled_in_hand"
     _enabled="0"
-    image_file="mods/portalgun/files/gun/plasmagun.png"
-    offset_x="5"
-    offset_y="4"
+    image_file="mods/portalgun/files/gun/portalgun.png"
+    offset_x="3"
+    offset_y="3.5"
     z_index="-1.5"
   ></SpriteComponent>
 
@@ -58,8 +58,8 @@
 
   <HotspotComponent
     _tags="shoot_pos"
-    offset.x="12"
-    offset.y="-1.5"
+    offset.x="10"
+    offset.y="-2"
   ></HotspotComponent>
 
   <LuaComponent
