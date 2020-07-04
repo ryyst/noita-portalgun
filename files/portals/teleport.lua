@@ -1,16 +1,6 @@
 dofile_once("data/scripts/lib/utilities.lua")
+dofile_once("mods/portalgun/files/utilities.lua")
 
-function vec_to_rad(x, y)
-  return math.atan2(y, x)
-end
-
-
-function get_target(portal_type)
-  if portal_type == "portal_blue" then
-    return EntityGetWithName("portal_orange")
-  end
-  return EntityGetWithName("portal_blue")
-end
 
 
 -- Return with the correct alignment pre-calculated
@@ -74,21 +64,51 @@ function _teleport_animal(entity, to_portal)
 end
 
 
-function _teleport_object(entity, to_portal)
+function _teleport_physicsobject(entity, to_portal)
   GamePrint("OBJECT DETECTED!")
-  local x, y, angle = get_portal_transform(to_portal)
+  local x, y, exit_angle = get_portal_transform(to_portal)
+
+  -- Disable physics
+  remove_joints(entity)
+  physics_enabled(entity, false)
+
+  -- Teleport infront of the portal
+  local distance = 7
+  local to_x = x + math.cos( exit_angle ) * distance
+  local to_y = y + math.sin( exit_angle ) * distance
+
+  EntitySetTransform(entity, to_x, to_y)
+
+  -- Re-enable physics
+  physics_enabled(entity, true)
+
+  -- Give a little push
+  local velComponent = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
+  local vel_x, vel_y = GameGetVelocityCompVelocity(entity)
+
+  local shoot_angle = vec_to_rad(vel_x, vel_y)
+  local angle = exit_angle - shoot_angle
+  local vel_x_exit, vel_y_exit = vec_rotate(vel_x, vel_y, angle)
+
+  local power = 1.5
+  PhysicsApplyForce(entity, vel_x_exit*power, vel_y_exit*power)
 end
 
 
 function teleport(entity)
   local to_portal = get_target(EntityGetName(GetUpdatedEntityID()))
 
-  if EntityHasTag(entity, "projectile") then
+  local isPhysics = EntityHasTag(entity, "item_physics") or
+    EntityHasTag(entity, "prop_physics") or
+    EntityGetComponent(entity, "PhysicsBodyComponent") or
+    EntityGetComponent(entity, "PhysicsBody2Component")
+
+  if isPhysics then
+    _teleport_physicsobject(entity, to_portal)
+  elseif EntityHasTag(entity, "projectile") then
     _teleport_projectile(entity, to_portal)
   elseif EntityHasTag(entity, "mortal") then
     _teleport_animal(entity, to_portal)
-  elseif EntityHasTag(entity, "item_physics") then
-    _teleport_object(entity, to_portal)
   end
 end
 
