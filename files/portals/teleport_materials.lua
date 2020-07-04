@@ -37,8 +37,8 @@ for k, v in pairs(allMaterials) do
   if v > 0 then
     local x, y = EntityGetTransform(target)
     local name = CellFactory_GetName(k)
-    GamePrint("FOUND: " .. name .. " " .. str(v))
-    GameCreateParticle( name, x, y, 5, 40, 20, false)
+    --GamePrint("FOUND: " .. name .. " " .. str(v))
+    --GameCreateParticle( name, x, y, 5, 40, 20, false)
 
     allMaterials[k] = 0
     hasIngested = true
