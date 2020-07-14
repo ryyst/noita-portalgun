@@ -76,6 +76,13 @@
     x_vel_min="-10"
     x_vel_max="10"
   ></ParticleEmitterComponent>
+  
+  <AudioLoopComponent
+	file="mods/Portal/data/audio/Desktop/portal.snd"
+	event_name="misc/portal_ambience/loop"
+	calculate_material_lowpass="0"
+	auto_play="1" >
+  </AudioLoopComponent>
 
   <CollisionTriggerComponent
     radius="11"
