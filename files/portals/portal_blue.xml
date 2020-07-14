@@ -9,7 +9,7 @@
     ></LightComponent>
 
     <SpriteComponent
-      image_file="mods/portalgun/files/portals/blue.png"
+      image_file="mods/portalgun/files/portals/gfx_blue.xml"
     ></SpriteComponent>
   </Base>
 </Entity>

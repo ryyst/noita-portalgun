@@ -1,0 +1,19 @@
+<Sprite
+  filename="mods/portalgun/files/portals/blue_anim.png"
+  default_animation="swirl"
+>
+
+ <!-- stand -->
+  <RectAnimation
+    name="swirl"
+    pos_x="0"
+    pos_y="0"
+    frame_count="4"
+    frame_width="24"
+    frame_height="30"
+    frame_wait="0.2"
+    frames_per_row="4"
+    loop="1"
+  ></RectAnimation>
+</Sprite>
+
