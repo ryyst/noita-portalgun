@@ -12,4 +12,17 @@
       image_file="mods/portalgun/files/portals/gfx_blue.xml"
     ></SpriteComponent>
   </Base>
+
+  <AudioLoopComponent
+	file="mods/Portal/data/audio/Desktop/portal.snd"
+	event_name="misc/portal_ambience/loop"
+	calculate_material_lowpass="0"
+	auto_play="1" >
+  </AudioLoopComponent>
+
+  <AudioComponent
+	file="mods/Portal/data/audio/Desktop/portal.snd"
+	event_root="misc/portal_blue_open" 
+	set_latest_event_position="1" >
+  </AudioComponent>
 </Entity>

@@ -108,6 +108,11 @@
   <LuaComponent
     script_collision_trigger_hit="mods/portalgun/files/portals/teleport.lua"
   ></LuaComponent>
+  
+  <LuaComponent
+	execute_every_n_frame="10"
+    script_source_file="mods/portalgun/files/portals/clear_wind_loop.lua"
+  ></LuaComponent>
 
   <LuaComponent
     _enabled="1"

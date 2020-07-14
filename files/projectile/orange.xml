@@ -24,4 +24,10 @@
       image_file="mods/portalgun/files/projectile/gfx_orange.xml"
     ></SpriteComponent>
   </Base>
+
+  <AudioComponent
+	file="mods/portalgun/files/audio/Desktop/portal.snd"
+	event_root="player_projectiles/portal_bullet_orange"
+	set_latest_event_position="1" >
+  </AudioComponent>
 </Entity>

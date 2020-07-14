@@ -32,4 +32,10 @@
     execute_on_removed="1"
     execute_times="1"
   ></LuaComponent>
+  
+  <AudioComponent
+	file="mods/portalgun/files/audio/Desktop/portal.snd"
+	event_root="player_projectiles/portal_bullet_blue"
+	set_latest_event_position="1" >
+  </AudioComponent>
 </Entity>

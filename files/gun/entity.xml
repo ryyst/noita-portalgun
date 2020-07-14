@@ -1,4 +1,4 @@
-<Entity tags="custom_wand,GUN">
+<Entity tags="custom_wand,GUN,portalgun">
   <AbilityComponent
     _tags="item,disabled_at_start"
     sprite_file="mods/portalgun/files/gun/portalgun.png"

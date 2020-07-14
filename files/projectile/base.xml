@@ -103,13 +103,4 @@
     y_pos_offset_min="-1"
     y_pos_offset_max="1"
   ></ParticleEmitterComponent>
-
-  <AudioComponent
-    file="data/audio/Desktop/projectiles.snd"
-    event_root="player_projectiles/bullet_laser"
-  ></AudioComponent>
-  <AudioComponent
-    file="data/audio/Desktop/projectiles.snd"
-    event_root="player_projectiles/bullet_heavy_slow"
-  ></AudioComponent>
 </Entity>

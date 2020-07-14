@@ -1,5 +1,5 @@
 ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/portalgun/files/actions.lua")
-
+ModRegisterAudioEventMappings("mods/portalgun/files/audio_events.txt") -- Use this to register custom fmod events. Event mapping files can be generated via File -> Export GUIDs in FMOD Studio.
 
 function give_player_items(inventory, items)
   for _, path in ipairs(items) do
@@ -20,4 +20,10 @@ function OnPlayerSpawned( player_entity )
   }
 
   give_player_items(inv_quick, items_quick)
+  
+  EntityAddComponent(player_entity, "LuaComponent",
+  {
+	script_source_file="mods/portalgun/files/gun/portalgun_tick.lua",
+	execute_every_n_frame="5"
+  })
 end
