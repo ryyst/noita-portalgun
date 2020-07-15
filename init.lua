@@ -23,7 +23,7 @@ function OnPlayerSpawned( player_entity )
   
   EntityAddComponent(player_entity, "LuaComponent",
   {
-	script_source_file="mods/portalgun/files/gun/portalgun_tick.lua",
+	script_source_file="mods/portalgun/files/gun/portalgun_activate.lua",
 	execute_every_n_frame="5"
   })
 end

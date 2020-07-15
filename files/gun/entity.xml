@@ -43,6 +43,9 @@
     offset_x="3"
     offset_y="3.5"
     z_index="-1.5"
+	has_special_scale="1"
+	special_scale_x="0.75"
+	special_scale_y="0.75"
   ></SpriteComponent>
 
   <HitboxComponent

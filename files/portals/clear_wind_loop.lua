@@ -5,29 +5,15 @@ function clear_wind_loop(entities)
 	end
 	for i,entity_id in ipairs(entities) do
 		if (entity_id ~= nil or 0) then
-			local audioloop_components = EntityGetComponent(entity_id, "AudioLoopComponent")
-			local has_windloop = false
-			if audioloop_components ~= nil then
-				for i,audioloop_component in ipairs(audioloop_components)
-				do
-					repeat
-						if (string.match(ComponentGetValue(audioloop_component, "event_name"), "wind_movement/loop") == nil) then
-							has_windloop = false
-							do break end
-						else
-							has_windloop = true
-							local vel_x, vel_y = GameGetVelocityCompVelocity(entity_id)
-							if ((vel_x < 0.1 and vel_y < 0.1) or (vel_x < .9 and vel_y < 0.1)) then
-								EntityRemoveComponent(entity_id, audioloop_component)
-								EntityRemoveTag(entity_id, "wind_affected")
-							end
-						end
-						if (i == table.maxn(audioloop_components) and not has_windloop) then
-							EntityRemoveTag(entity_id, "wind_affected")
-							break
-						end
-					until true
+			local audioloop_components = EntityGetComponent(entity_id, "AudioLoopComponent", "wind_effect")
+			if (audioloop_components ~= nil and table.maxn(audioloop_components) > 0) then
+				local vel_x, vel_y = GameGetVelocityCompVelocity(entity_id)
+				if ((vel_x < 0.1 and vel_y < 0.1) or (vel_x < .9 and vel_y < 0.1)) then
+					EntityRemoveComponent(entity_id, audioloop_components[1])
+					EntityRemoveTag(entity_id, "wind_affected")
 				end
+			else
+				EntityRemoveTag(entity_id, "wind_affected")
 			end
 		end
 	end

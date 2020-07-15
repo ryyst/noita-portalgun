@@ -78,7 +78,7 @@
   ></ParticleEmitterComponent>
   
   <AudioLoopComponent
-	file="mods/Portal/data/audio/Desktop/portal.snd"
+	file="mods/portalgun/files/audio/Desktop/portal.snd"
 	event_name="misc/portal_ambience/loop"
 	calculate_material_lowpass="0"
 	auto_play="1" >

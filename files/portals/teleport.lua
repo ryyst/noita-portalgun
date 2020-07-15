@@ -9,42 +9,20 @@ function apply_wind_looop(entity_id)
 		return
 	end
 	
-	local audioloop_components = EntityGetComponent(entity_id, "AudioLoopComponent")
-	if audioloop_components ~= nil then
-		for i,audioloop_component in ipairs(audioloop_components)
-		do
-			repeat
-				if (string.match(ComponentGetValue(audioloop_component, "event_name"), "wind_movement/loop") == nil) then
-					if (i ~= table.maxn(audioloop_components)) then
-						do break end
-					end
-				else
-					if (not EntityHasTag(entity_id, "wind_affected")) then
-						EntityAddTag(entity_id, "wind_affected")
-					end
-					break
-				end
-				if (i == table.maxn(audioloop_components)) then
-					local new_audio_comp = EntityAddComponent(entity_id, "AudioLoopComponent", {
-						file="mods/Portal/data/audio/Desktop/portal.snd",
-						event_name="misc/wind_movement/loop",
-						set_speed_parameter="1",
-						auto_play_if_enabled="1"
-					})
-					if (not EntityHasTag(entity_id, "wind_affected")) then
-						EntityAddTag(entity_id, "wind_affected")
-					end
-					break
-				end
-			until true
+	local audioloop_components = EntityGetComponent(entity_id, "AudioLoopComponent", "wind_effect")
+	if (audioloop_components ~= nil and table.maxn(audioloop_components) > 0) then
+		if (not EntityHasTag(entity_id, "wind_affected")) then
+			EntityAddTag(entity_id, "wind_affected")
 		end
 	else
 		local new_audio_comp = EntityAddComponent(entity_id, "AudioLoopComponent", {
-			file="mods/Portal/data/audio/Desktop/portal.snd",
+			_tags="wind_effect",
+			file="mods/portalgun/files/audio/Desktop/portal.snd",
 			event_name="misc/wind_movement/loop",
 			set_speed_parameter="1",
 			auto_play_if_enabled="1"
 		})
+		
 		if (not EntityHasTag(entity_id, "wind_affected")) then
 			EntityAddTag(entity_id, "wind_affected")
 		end
