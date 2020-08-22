@@ -1,0 +1,25 @@
+<Entity>
+
+  <Base file="data/entities/base_custom_card.xml">
+    <ItemActionComponent
+      _tags="enabled_in_world"
+      action_id="PORTAL"
+    ></ItemActionComponent>
+  </Base>
+
+  <LightComponent
+    _tags="enabled_in_world,enabled_in_hand"
+    r="52"
+    g="191"
+    b="255"
+    radius="30"
+  ></LightComponent>
+
+  <InheritTransformComponent
+    _tags="enabled_in_world,enabled_in_hand">
+    <Transform
+      position.x="3"
+      position.y="0"
+    ></Transform>
+  </InheritTransformComponent>
+</Entity>
