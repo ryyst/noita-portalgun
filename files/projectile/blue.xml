@@ -23,13 +23,4 @@
       image_file="mods/portalgun/files/projectile/gfx_blue.xml"
     ></SpriteComponent>
   </Base>
-
-  <!-- Special case, because blue is shot normally from an Action,
-       while orange is shot manually. -->
-  <LuaComponent
-    _enabled="1"
-    script_source_file="mods/portalgun/files/projectile/set_blue_angle.lua"
-    execute_on_removed="1"
-    execute_times="1"
-  ></LuaComponent>
 </Entity>

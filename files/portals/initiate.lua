@@ -1,3 +1,5 @@
+dofile_once("data/scripts/lib/utilities.lua")
+
 local portal = GetUpdatedEntityID()
 local portal_type = EntityGetName(portal)
 
@@ -10,16 +12,11 @@ for _, sibling in ipairs(clones) do
 end
 
 
--- Adjust angle and position
+local isBlue = portal_type == "portal_blue"
+local global = isBlue and "PG_BLUE_SHOT_ANGLE" or "PG_ORANGE_SHOT_ANGLE"
 
-local angle
-
-if portal_type == "portal_blue" then
-  angle = tonumber(GlobalsGetValue("PG_BLUE_SHOT_ANGLE", "0"))
-else
-  angle = tonumber(GlobalsGetValue("PG_ORANGE_SHOT_ANGLE", "0"))
-end
-
+local shooting_angle = tonumber(GlobalsGetValue(global, "0"))
 local x, y = EntityGetTransform(portal)
 
-EntitySetTransform(portal, x, y, -angle)
+-- Adjust angle and position so that the portal is always facing Minä.
+EntitySetTransform(portal, x, y, -shooting_angle)
