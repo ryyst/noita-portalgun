@@ -6,20 +6,34 @@
   <SpriteComponent
     _tags="enabled_in_world"
     _enabled="1"
-    offset_x="13"
+    offset_x="8"
     offset_y="15"
-    emissive="1"
+    emissive="0"
     additive="0"
     z_index="-100"
+    has_special_scale="1"
+    special_scale_x="0.65"
+    special_scale_y="0.85"
   ></SpriteComponent>
 
   <LightComponent
     _enabled="1"
     radius="40"
+    offset_x="-2"
+    offset_y="15"
     r="52"
     g="191"
     b="255"
   ></LightComponent>
+
+  <SpriteComponent
+    _tags="enabled_in_world"
+    _enabled="1"
+    offset_x="24"
+    offset_y="24"
+    fog_of_war_hole="1"
+    image_file="mods/portalgun/files/portals/fow_hole.png"
+  ></SpriteComponent>
 
   <MaterialSuckerComponent 
     _tags="enabled_in_world,enabled_in_hand"
@@ -45,19 +59,20 @@
     gravity.y="-50.0"
     lifetime_min="0.5"
     lifetime_max="1.8"
-    count_min="6"
-    count_max="16"
+    count_min="2"
+    count_max="8"
 
-    render_on_grid="1"
-    render_back="0"
-    collide_with_grid="0"
+    render_on_grid="0"
+    render_back="1"
+    collide_with_grid="1"
 
     fade_based_on_lifetime="1"
     cosmetic_force_create="0"
 
-    airflow_force="2.5"
-    airflow_time="0.35"
-    airflow_scale="0.45"
+    airflow_force="3.5"
+    airflow_time="0.25"
+    airflow_scale="0.55"
+    attractor_force="9"
 
     emission_interval_min_frames="1"
     emission_interval_max_frames="4"
@@ -65,16 +80,16 @@
     is_emitting="1"
 
     is_trail="0"
-    x_pos_offset_min="3"
-    x_pos_offset_max="6"
-    y_pos_offset_min="-7"
-    y_pos_offset_max="7"
+    x_pos_offset_min="0"
+    x_pos_offset_max="-3"
+    y_pos_offset_min="-9"
+    y_pos_offset_max="9"
 
-    y_vel_min="-10"
-    y_vel_max="10"
+    y_vel_min="-14"
+    y_vel_max="14"
 
-    x_vel_min="-10"
-    x_vel_max="10"
+    x_vel_min="-14"
+    x_vel_max="14"
   ></ParticleEmitterComponent>
 
   <CollisionTriggerComponent

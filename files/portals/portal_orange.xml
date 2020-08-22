@@ -13,7 +13,7 @@
     ></LightComponent>
 
     <SpriteComponent
-      image_file="mods/portalgun/files/portals/orange.png"
+      image_file="mods/portalgun/files/portals/gfx_orange.xml"
     ></SpriteComponent>
   </Base>
 </Entity>
