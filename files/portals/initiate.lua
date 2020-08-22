@@ -3,15 +3,6 @@ dofile_once("data/scripts/lib/utilities.lua")
 local portal = GetUpdatedEntityID()
 local portal_type = EntityGetName(portal)
 
-local clones = EntityGetWithTag(portal_type)
-
-for _, sibling in ipairs(clones) do
-  if sibling ~= portal then
-    EntityKill(sibling)
-  end
-end
-
-
 local isBlue = portal_type == "portal_blue"
 local global = isBlue and "PG_BLUE_SHOT_ANGLE" or "PG_ORANGE_SHOT_ANGLE"
 

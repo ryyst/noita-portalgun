@@ -64,12 +64,14 @@
 
   <LuaComponent
     _tags="enabled_in_hand"
+    _enabled="1"
     script_source_file="mods/portalgun/files/gun/mouse2.lua"
     execute_every_n_frame="1"
   ></LuaComponent>
 
   <LuaComponent
     _tags="enabled_in_hand"
+    _enabled="1"
     script_shot="mods/portalgun/files/projectile/set_blue_angle.lua"
   ></LuaComponent>
 </Entity>

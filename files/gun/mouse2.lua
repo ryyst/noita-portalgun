@@ -10,6 +10,17 @@ local ctrlComponent = EntityGetFirstComponentIncludingDisabled(player, "Controls
 local holding_mouse2 = ComponentGetValue2(ctrlComponent, "mButtonDownRightClick")
 
 
+function remove_orange_portal()
+  local clones = EntityGetWithTag("portal_orange")
+
+  for _, sibling in ipairs(clones) do
+    if sibling ~= portal then
+      EntityKill(sibling)
+    end
+  end
+end
+
+
 function shoot()
   local x, y = EntityGetTransform(gun)
   local mouse_x, mouse_y = DEBUG_GetMouseWorld()
@@ -33,5 +44,6 @@ if (holding_mouse2) then
   local last_shot = tonumber(GlobalsGetValue("PG_ORANGE_SHOT_FRAME", "-999"))
   if GameGetFrameNum() - last_shot > COOLDOWN then
     shoot()
+    remove_orange_portal()
   end
 end
