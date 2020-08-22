@@ -104,7 +104,10 @@ function teleport(entity)
     EntityGetComponent(entity, "PhysicsBody2Component")
 
   if isPhysics then
-    _teleport_physicsobject(entity, to_portal)
+    local isNotInInventory = EntityGetParent(entity) == 0
+    if isNotInInventory then
+      _teleport_physicsobject(entity, to_portal)
+    end
   elseif EntityHasTag(entity, "projectile") then
     _teleport_projectile(entity, to_portal)
   elseif EntityHasTag(entity, "mortal") then
