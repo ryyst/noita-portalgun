@@ -16,4 +16,10 @@
       image_file="mods/portalgun/files/portals/gfx_orange.xml"
     ></SpriteComponent>
   </Base>
+  
+  <AudioComponent
+	file="mods/portalgun/files/audio/Desktop/portal.snd"
+	event_root="misc/portal_orange_open" 
+	set_latest_event_position="1" >
+  </AudioComponent>
 </Entity>

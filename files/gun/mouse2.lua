@@ -15,6 +15,12 @@ function remove_orange_portal()
 
   for _, sibling in ipairs(clones) do
     if sibling ~= portal then
+      local x, y = EntityGetTransform(sibling)
+      GamePlaySound(
+        "mods/portalgun/files/audio/Desktop/portal.snd",
+        "misc/portal_orange_close/create",
+        sibling_x, sibling_y
+      )
       EntityKill(sibling)
     end
   end

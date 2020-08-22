@@ -91,6 +91,13 @@
     x_vel_min="-14"
     x_vel_max="14"
   ></ParticleEmitterComponent>
+  
+  <AudioLoopComponent
+	file="mods/portalgun/files/audio/Desktop/portal.snd"
+	event_name="misc/portal_ambience/loop"
+	calculate_material_lowpass="0"
+	auto_play="1" >
+  </AudioLoopComponent>
 
   <CollisionTriggerComponent
     radius="11"
@@ -122,6 +129,11 @@
 
   <LuaComponent
     script_collision_trigger_hit="mods/portalgun/files/portals/teleport.lua"
+  ></LuaComponent>
+  
+  <LuaComponent
+	execute_every_n_frame="10"
+    script_source_file="mods/portalgun/files/portals/clear_wind_loop.lua"
   ></LuaComponent>
 
   <LuaComponent

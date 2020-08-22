@@ -3,12 +3,37 @@ dofile_once("mods/portalgun/files/utilities.lua")
 
 
 
+-- Applies a wind effect and plays a little tune which changes depending on the speed of the entity.
+function apply_wind_looop(entity_id)
+	if (string.match(EntityGetTags(entity_id), "wand") ~= nil) then
+		return
+	end
+	
+	local audioloop_components = EntityGetComponent(entity_id, "AudioLoopComponent", "wind_effect")
+	if (audioloop_components ~= nil and table.maxn(audioloop_components) > 0) then
+		if (not EntityHasTag(entity_id, "wind_affected")) then
+			EntityAddTag(entity_id, "wind_affected")
+		end
+	else
+		local new_audio_comp = EntityAddComponent(entity_id, "AudioLoopComponent", {
+			_tags="wind_effect",
+			file="mods/portalgun/files/audio/Desktop/portal.snd",
+			event_name="misc/wind_movement/loop",
+			set_speed_parameter="1",
+			auto_play_if_enabled="1"
+		})
+		
+		if (not EntityHasTag(entity_id, "wind_affected")) then
+			EntityAddTag(entity_id, "wind_affected")
+		end
+	end
+end
+
 -- Return with the correct alignment pre-calculated
 function get_portal_transform(portal)
   local x, y, rot = EntityGetTransform(portal)
   return x, y, rot - math.pi
 end
-
 
 function _teleport_projectile(entity, to_portal)
   local x, y, exit_angle = get_portal_transform(to_portal)
@@ -36,6 +61,15 @@ end
 function _teleport_animal(entity, to_portal)
   local x, y, exit_angle = get_portal_transform(to_portal)
 
+  -- Play enter portal sound effect
+  local from_x, from_y = get_portal_transform(GetUpdatedEntityID())
+  
+  if (EntityGetName(GetUpdatedEntityID()) == "portal_blue") then
+	GamePlaySound("mods/portalgun/files/audio/Desktop/portal.snd", "misc/portal_blue_enter/create", from_x, from_y)
+  elseif (EntityGetName(GetUpdatedEntityID()) == "portal_orange") then
+	GamePlaySound("mods/portalgun/files/audio/Desktop/portal.snd", "misc/portal_orange_enter/create", from_x, from_y)
+  end
+
   -- Set teleport position infront of the portal
   -- TODO: Try out the GetGoodPlaceForBody() tms.
   local distance = 7
@@ -61,6 +95,15 @@ function _teleport_animal(entity, to_portal)
 
   print("animmal velocities:", vel_x_exit, vel_y_exit)
   ComponentSetValue2(dataComponent, "mVelocity", vel_x_exit*power, vel_y_exit*power)
+  
+  -- Play exit portal sound effect
+  if (EntityGetName(to_portal) == "portal_blue") then
+	GamePlaySound("mods/portalgun/files/audio/Desktop/portal.snd", "misc/portal_blue_exit/create", to_x, to_y)
+  elseif (EntityGetName(to_portal) == "portal_orange") then
+	GamePlaySound("mods/portalgun/files/audio/Desktop/portal.snd", "misc/portal_orange_exit/create", to_x, to_y)
+  end
+  
+  apply_wind_looop(entity)
 end
 
 
@@ -117,9 +160,15 @@ end
 
 
 function collision_trigger(colliding_entity_id)
+  local to_portal = get_target(EntityGetName(GetUpdatedEntityID()))
+  if (to_portal == nil or to_portal == 0) then
+	return
+  end
+  
   local last_teleport = tonumber(GlobalsGetValue("PG_LAST_TELEPORT", "-999"))
-  if GameGetFrameNum() - last_teleport > 5 then
+  if (GameGetFrameNum() - last_teleport > 5) then
     GlobalsSetValue("PG_LAST_TELEPORT", GameGetFrameNum())
+	
     teleport(colliding_entity_id)
   end
 end
