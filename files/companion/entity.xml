@@ -1,0 +1,44 @@
+<Entity name="best_friends_forever" tags="item_physics">
+
+  <VelocityComponent
+    _tags="enabled_in_world"
+    mass="0.5"
+  ></VelocityComponent>
+
+  <PhysicsBodyComponent
+    _tags="enabled_in_world"
+    allow_sleep="1"
+    angular_damping="0"
+    fixed_rotation="0"
+    is_bullet="0"
+    linear_damping="0"
+    on_death_leave_physics_body="0"
+  ></PhysicsBodyComponent>
+
+  <PhysicsImageShapeComponent
+    _tags="enabled_in_world"
+    centered="1"
+    is_root="1"
+    image_file="mods/portalgun/files/companion/cube.png"
+    material="steel"
+  ></PhysicsImageShapeComponent>
+
+  <ProjectileComponent
+    _tags="enabled_in_world"
+    lifetime="-1"
+    penetrate_entities="1"
+  ></ProjectileComponent>
+
+  <CameraBoundComponent
+    max_count="50"
+    distance="500"
+  ></CameraBoundComponent>
+
+  <LuaComponent
+    _enabled="1"
+    script_physics_body_modified="mods/portalgun/files/companion/hurt.lua"
+    script_death="mods/portalgun/files/companion/hurt.lua"
+    execute_on_removed="mods/portalgun/files/companion/hurt.lua"
+  ></LuaComponent>
+</Entity>
+

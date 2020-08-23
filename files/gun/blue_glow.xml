@@ -18,7 +18,7 @@
   <InheritTransformComponent
     _tags="enabled_in_world,enabled_in_hand">
     <Transform
-      position.x="3"
+      position.x="6"
       position.y="0"
     ></Transform>
   </InheritTransformComponent>
