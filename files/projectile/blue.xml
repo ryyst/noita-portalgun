@@ -1,5 +1,4 @@
 <Entity name="$projectile_default">
-
   <Base file="mods/portalgun/files/projectile/base.xml" >
     <ProjectileComponent>
       <config_explosion
@@ -22,16 +21,17 @@
     ></SpriteComponent>
   </Base>
 
+  <!-- Remove any existing siblings upon shooting a new portal -->
   <LuaComponent
     _enabled="1"
     script_source_file="mods/portalgun/files/projectile/remove_blue_portal.lua"
     execute_on_added="1"
     execute_times="1"
   ></LuaComponent>
-  
+
   <AudioComponent
-	file="mods/portalgun/files/audio/Desktop/portal.snd"
-	event_root="player_projectiles/portal_bullet_blue"
-	set_latest_event_position="1" >
-  </AudioComponent>
+    file="mods/portalgun/files/audio/Desktop/portal.snd"
+    event_root="player_projectiles/portal_bullet_blue"
+    set_latest_event_position="1"
+  ></AudioComponent>
 </Entity>

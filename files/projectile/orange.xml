@@ -1,5 +1,4 @@
 <Entity name="$projectile_default">
-
   <Base file="mods/portalgun/files/projectile/base.xml" >
     <ProjectileComponent>
       <config_explosion
@@ -23,8 +22,8 @@
   </Base>
 
   <AudioComponent
-	file="mods/portalgun/files/audio/Desktop/portal.snd"
-	event_root="player_projectiles/portal_bullet_orange"
-	set_latest_event_position="1" >
-  </AudioComponent>
+    file="mods/portalgun/files/audio/Desktop/portal.snd"
+    event_root="player_projectiles/portal_bullet_orange"
+    set_latest_event_position="1"
+  ></AudioComponent>
 </Entity>

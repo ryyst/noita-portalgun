@@ -2,25 +2,22 @@ dofile_once("data/scripts/lib/utilities.lua")
 
 
 function physics_enabled(entity, enable)
-  for _, physComp in pairs({"PhysicsBodyComponent", "PhysicsBody2Component"}) do
-    local phys1 = EntityGetComponentIncludingDisabled(entity, "PhysicsBodyComponent")
-    if phys1 then
-      for _, comp in ipairs(phys1) do
-        GamePrint(comp)
-        EntitySetComponentIsEnabled(entity, comp, enable)
-      end
+  for _, comp_name in pairs({"PhysicsBodyComponent", "PhysicsBody2Component"}) do
+    local comps = EntityGetComponentIncludingDisabled(entity, comp_name)
+    for _, comp in ipairs(comps) do
+      EntitySetComponentIsEnabled(entity, comp, enable)
     end
   end
 end
 
 function remove_joints(entity)
-  local removable_components = {"PhysicsJointComponent", "PhysicsJoint2Component", "PhysicsJoint2MutatorComponent"}
-  for _, jointComp in pairs(removable_components) do
-    local joints = EntityGetComponentIncludingDisabled(entity, jointComp)
-    if joints then
-      for _, comp in ipairs(joints) do
-        EntityRemoveComponent(entity, comp)
-      end
+  local removable_components = {
+    "PhysicsJointComponent", "PhysicsJoint2Component", "PhysicsJoint2MutatorComponent"
+  }
+  for _, comp_name in pairs(removable_components) do
+    local comps = EntityGetComponentIncludingDisabled(entity, comp_name)
+    for _, comp in ipairs(comps) do
+      EntityRemoveComponent(entity, comp)
     end
   end
 end

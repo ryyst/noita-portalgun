@@ -21,12 +21,11 @@ function shoot()
 
   shoot_projectile(player, "mods/portalgun/files/projectile/orange.xml", x, y, vel_x, vel_y)
 
-  -- I can't get `script_wait_frames` to work for some reason,
-  -- so we'll just do the pauses via globals
+  -- Save the frame we shot our projectile, for manual cooldown calculation.
   GlobalsSetValue("PG_ORANGE_SHOT_FRAME", GameGetFrameNum())
 
-  -- Save the rotation so we can adjust portal correctly when it spawns
-  GlobalsSetValue("PG_ORANGE_SHOT_ANGLE", angle)  -- for later use
+  -- Save the rotation so we can adjust portal correctly when it spawns.
+  GlobalsSetValue("PG_ORANGE_SHOT_ANGLE", angle)
 end
 
 
@@ -34,6 +33,8 @@ if (holding_mouse2) then
   local last_shot = tonumber(GlobalsGetValue("PG_ORANGE_SHOT_FRAME", "-999"))
   if GameGetFrameNum() - last_shot > COOLDOWN then
     shoot()
+
+    -- Remove any existing siblings upon shooting a new portal
     remove_portal_siblings("portal_orange")
   end
 end
