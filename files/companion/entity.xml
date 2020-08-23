@@ -35,10 +35,7 @@
   ></CameraBoundComponent>
 
   <LuaComponent
-    _enabled="1"
     script_physics_body_modified="mods/portalgun/files/companion/hurt.lua"
-    script_death="mods/portalgun/files/companion/hurt.lua"
-    execute_on_removed="mods/portalgun/files/companion/hurt.lua"
   ></LuaComponent>
 </Entity>
 
