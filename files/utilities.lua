@@ -25,16 +25,34 @@ function remove_joints(entity)
   end
 end
 
-function vec_to_rad(x, y)
-  return math.atan2(y, x)
-end
-
 
 function get_target(portal_type)
   if portal_type == "portal_blue" then
     return EntityGetWithName("portal_orange")
   end
   return EntityGetWithName("portal_blue")
+end
+
+
+function remove_portal_siblings(portal_type, current)
+  local clones = EntityGetWithTag(portal_type)
+
+  for _, sibling in ipairs(clones) do
+    if sibling ~= current then
+      local x, y = EntityGetTransform(sibling)
+      GamePlaySound(
+        "mods/portalgun/files/audio/Desktop/portal.snd",
+        "misc/portal_orange_close/create",
+        x, y
+      )
+      EntityKill(sibling)
+    end
+  end
+end
+
+
+function vec_to_rad(x, y)
+  return math.atan2(y, x)
 end
 
 
