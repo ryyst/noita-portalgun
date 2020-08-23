@@ -41,7 +41,7 @@
     _tags="item,enabled_in_hand,enabled_in_world"
     _enabled="0"
     image_file="mods/portalgun/files/gun/portalgun.png"
-    offset_x="3"
+    offset_x="6"
     offset_y="3.5"
     z_index="-1.5"
   ></SpriteComponent>
@@ -73,8 +73,8 @@
 
   <HotspotComponent
     _tags="shoot_pos"
-    offset.x="10"
-    offset.y="-2"
+    offset.x="13"
+    offset.y="0"
   ></HotspotComponent>
 
   <LuaComponent

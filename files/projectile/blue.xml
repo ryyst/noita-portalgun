@@ -1,9 +1,7 @@
 <Entity name="$projectile_default">
 
   <Base file="mods/portalgun/files/projectile/base.xml" >
-    <ProjectileComponent
-      muzzle_flash_file="data/entities/particles/muzzle_flashes/muzzle_flash_laser.xml"
-    >
+    <ProjectileComponent>
       <config_explosion
         load_this_entity="mods/portalgun/files/portals/portal_blue.xml"
       ></config_explosion>
