@@ -4,6 +4,8 @@ dofile_once("data/scripts/lib/utilities.lua")
 function physics_enabled(entity, enable)
   for _, comp_name in pairs({"PhysicsBodyComponent", "PhysicsBody2Component"}) do
     local comps = EntityGetComponentIncludingDisabled(entity, comp_name)
+    if not comps then return end
+
     for _, comp in ipairs(comps) do
       EntitySetComponentIsEnabled(entity, comp, enable)
     end
@@ -16,6 +18,8 @@ function remove_joints(entity)
   }
   for _, comp_name in pairs(removable_components) do
     local comps = EntityGetComponentIncludingDisabled(entity, comp_name)
+    if not comps then return end
+
     for _, comp in ipairs(comps) do
       EntityRemoveComponent(entity, comp)
     end
