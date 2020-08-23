@@ -28,8 +28,4 @@ function OnPlayerSpawned(player)
 
   give_player_items(inv_quick, items_quick)
 
-  EntityAddComponent(player, "LuaComponent", {
-    script_source_file="mods/portalgun/files/gun/portalgun_activate.lua",
-    execute_every_n_frame="5"
-  })
 end

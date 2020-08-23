@@ -1,3 +1,6 @@
+dofile_once("data/scripts/lib/utilities.lua")
+
+
 function physics_enabled(entity, enable)
   for _, physComp in pairs({"PhysicsBodyComponent", "PhysicsBody2Component"}) do
     local phys1 = EntityGetComponentIncludingDisabled(entity, "PhysicsBodyComponent")

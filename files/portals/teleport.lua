@@ -2,7 +2,6 @@ dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("mods/portalgun/files/utilities.lua")
 
 
-
 -- Applies a wind effect and plays a little tune which changes depending on the speed of the entity.
 function apply_wind_looop(entity_id)
 	if (string.match(EntityGetTags(entity_id), "wand") ~= nil) then
