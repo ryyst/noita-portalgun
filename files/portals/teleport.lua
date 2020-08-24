@@ -93,7 +93,7 @@ function _teleport_animal(entity, to_portal)
   local vel_x_exit, vel_y_exit = vec_rotate(vel_x, vel_y, turn_angle)
 
   -- Give a little push coming out of the portal
-  local power = 140
+  local power = 80
 
   ComponentSetValue2(dataComponent, "mVelocity", vel_x_exit*power, vel_y_exit*power)
 
@@ -125,7 +125,6 @@ function _teleport_physicsobject(entity, to_portal)
   -- Re-enable physics
   physics_enabled(entity, true)
 
-  -- Give a little push
   local velComponent = EntityGetFirstComponentIncludingDisabled(entity, "VelocityComponent")
   local vel_x, vel_y = GameGetVelocityCompVelocity(entity)
 
@@ -133,8 +132,16 @@ function _teleport_physicsobject(entity, to_portal)
   local angle = exit_angle - shoot_angle
   local vel_x_exit, vel_y_exit = vec_rotate(vel_x, vel_y, angle)
 
-  local power = 1.5
-  PhysicsApplyForce(entity, vel_x_exit*power, vel_y_exit*power)
+  local magnitude = get_magnitude(vel_x_exit, vel_y_exit)
+  local power = get_scaled_power(magnitude)
+
+  -- Don't let the objects just go back-and-forth endlessly:
+  -- * +1 to help when the velocities are 0.
+  -- * Give them a little extra push calculated via magnitude.
+  vel_x_exit = (vel_x_exit + 1) * power
+  vel_y_exit = (vel_y_exit + 1) * power
+
+  PhysicsApplyForce(entity, vel_x_exit, vel_y_exit)
 end
 
 

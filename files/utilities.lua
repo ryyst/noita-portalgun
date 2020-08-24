@@ -55,6 +55,16 @@ function remove_portal_siblings(portal_type, current)
 end
 
 
+function get_scaled_power(magnitude)
+  if magnitude < 5 then return 20
+  elseif magnitude < 10 then return 10
+  elseif magnitude < 20 then return 5
+  elseif magnitude < 40 then return 3
+  elseif magnitude < 120 then return 1.5
+  else return 1 end
+end
+
+
 function vec_to_rad(x, y)
   return math.atan2(y, x)
 end
