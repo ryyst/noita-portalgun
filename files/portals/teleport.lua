@@ -133,9 +133,7 @@ function _teleport_physicsobject(entity, to_portal)
 end
 
 
-function teleport(entity)
-  local to_portal = get_target(EntityGetName(GetUpdatedEntityID()))
-
+function teleport(entity, to_portal)
   local isPhysics = EntityHasTag(entity, "item_physics") or
     EntityHasTag(entity, "prop_physics") or
     EntityGetComponent(entity, "PhysicsBodyComponent") or
@@ -154,16 +152,18 @@ function teleport(entity)
 end
 
 
-function collision_trigger(colliding_entity_id)
+function collision_trigger(entity)
   local to_portal = get_target(EntityGetName(GetUpdatedEntityID()))
   if (to_portal == nil or to_portal == 0) then
     return
   end
 
-  local last_teleport = tonumber(GlobalsGetValue("PG_LAST_TELEPORT", "-999"))
-  if (GameGetFrameNum() - last_teleport > 5) then
-    GlobalsSetValue("PG_LAST_TELEPORT", GameGetFrameNum())
+  local key = "PG_LAST_TELEPORT_"..entity
+  local last_teleport = tonumber(GlobalsGetValue(key, "-999"))
 
-    teleport(colliding_entity_id)
+  if (GameGetFrameNum() - last_teleport > 5) then
+    GlobalsSetValue(key, GameGetFrameNum())
+
+    teleport(entity, to_portal)
   end
 end
