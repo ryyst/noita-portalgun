@@ -1,6 +1,11 @@
 dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("mods/portalgun/files/utilities.lua")
 
+-- Entity types enum
+PHYSICS = 1
+ANIMAL = 2
+PROJECTILE = 3
+
 
 -- Applies a wind effect and plays a little tune which changes depending on the speed of the entity.
 function apply_wind_looop(entity_id)
@@ -133,21 +138,22 @@ function _teleport_physicsobject(entity, to_portal)
 end
 
 
-function teleport(entity, to_portal)
+function get_entity_type(entity, etype)
   local isPhysics = EntityHasTag(entity, "item_physics") or
     EntityHasTag(entity, "prop_physics") or
     EntityGetComponent(entity, "PhysicsBodyComponent") or
     EntityGetComponent(entity, "PhysicsBody2Component")
 
-  if isPhysics then
-    local isNotInInventory = EntityGetParent(entity) == 0
-    if isNotInInventory then
-      _teleport_physicsobject(entity, to_portal)
-    end
+  local isNotInInventory = EntityGetParent(entity) == 0
+
+  if (isPhysics and isNotInInventory) then
+    return PHYSICS
+
   elseif EntityHasTag(entity, "projectile") then
-    _teleport_projectile(entity, to_portal)
+    return PROJECTILE
+
   elseif EntityHasTag(entity, "mortal") then
-    _teleport_animal(entity, to_portal)
+    return ANIMAL
   end
 end
 
@@ -161,9 +167,22 @@ function collision_trigger(entity)
   local key = "PG_LAST_TELEPORT_"..entity
   local last_teleport = tonumber(GlobalsGetValue(key, "-999"))
 
-  if (GameGetFrameNum() - last_teleport > 5) then
+  local etype = get_entity_type(entity)
+
+  -- Give physics object a bit longer cooldown, to get through properly
+  local cooldown = etype == PHYSICS and 10 or 5
+
+  if (GameGetFrameNum() - last_teleport > cooldown) then
     GlobalsSetValue(key, GameGetFrameNum())
 
-    teleport(entity, to_portal)
+    if etype == PHYSICS then
+      _teleport_physicsobject(entity, to_portal)
+
+    elseif etype == PROJECTILE then
+      _teleport_projectile(entity, to_portal)
+
+    elseif etype == ANIMAL then
+      _teleport_animal(entity, to_portal)
+    end
   end
 end
