@@ -1,5 +1,8 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
+----------------------------------------------------------------
+-- PORTAL UTILITIES
+----------------------------------------------------------------
 
 function physics_enabled(entity, enable)
   for _, comp_name in pairs({"PhysicsBodyComponent", "PhysicsBody2Component"}) do
