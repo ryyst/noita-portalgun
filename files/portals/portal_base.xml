@@ -10,6 +10,7 @@
     offset_y="15"
     emissive="0"
     additive="0"
+    alpha="0.9"
     z_index="-100"
     has_special_scale="1"
     special_scale_x="0.65"
