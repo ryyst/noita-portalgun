@@ -58,6 +58,13 @@ function _teleport_projectile(entity, to_portal)
   local angle = exit_angle - shoot_angle
   local vx, vy = vec_rotate(vel_x, vel_y, angle)
   ComponentSetValue2(velComponent, "mVelocity", vx, vy)
+
+  -- Allow entities to kill themselves with their own projectiles.
+  -- NOTE: This also applies to the player. We could easily filter it out,
+  -- but I think this might be more "fun".
+  local projComponent = EntityGetFirstComponentIncludingDisabled(entity, "ProjectileComponent")
+  ComponentSetValue2(projComponent, "friendly_fire", true)
+  ComponentSetValue2(projComponent, "collide_with_shooter_frames", 1)
 end
 
 
