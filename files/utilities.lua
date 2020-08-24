@@ -127,3 +127,10 @@ function debug_component(comp)
   print(str(ComponentGetMembers(comp)))
   print("--- END COMPONENT DATA ---")
 end
+
+
+function EntityGetValue(entity, component_name, attr_name)
+  return ComponentGetValue2(
+    EntityGetFirstComponentIncludingDisabled(entity, component_name), attr_name
+  )
+end

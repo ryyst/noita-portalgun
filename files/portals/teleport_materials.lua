@@ -1,28 +1,10 @@
-function get_target(portal_type)
-  if portal_type == "portal_blue" then
-    return EntityGetWithName("portal_orange")
-  end
-  return EntityGetWithName("portal_blue")
-end
+dofile_once("mods/portalgun/files/utilities.lua")
 
-
-function EntityGetValue(entity, component_name, attr_name)
-  return ComponentGetValue2(
-    EntityGetFirstComponentIncludingDisabled(entity, component_name), attr_name
-  )
-end
-
-function str(var)
-  if type(var) == 'table' then
-    local s = '{ '
-    for k,v in pairs(var) do
-      if type(k) ~= 'number' then k = '"'..k..'"' end
-      s = s .. '['..k..'] = ' .. str(v) .. ','
-    end
-    return s .. '} '
-  end
-  return tostring(var)
-end
+-- TODO: Make this work.
+--
+-- This is disabled for now, as the current implementation
+-- starts creating a lot of crazy alchemical concoctions out of
+-- singular materials. Guaranteed creepy liquid in notime.
 
 
 local portal = GetUpdatedEntityID()
@@ -46,7 +28,7 @@ for k, v in pairs(allMaterials) do
 end
 
 if hasIngested then
+  -- This produces the error:
+  -- "ComponentSetValue2 - field 'count_per_material_type' has unsupported type."
   --ComponentSetValue2(matInv, "count_per_material_type", allMaterials)
 end
-
-
