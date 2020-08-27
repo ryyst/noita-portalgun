@@ -2,6 +2,7 @@ ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/portalgun/files/actio
 ModLuaFileAppend("data/scripts/biomes/mountain/mountain_hall.lua", "mods/portalgun/files/companion/spawn.lua")
 ModRegisterAudioEventMappings("mods/portalgun/files/audio_events.txt")
 
+
 function give_player_items(inventory, items)
   for _, path in ipairs(items) do
     local item = EntityLoad(path)
@@ -27,5 +28,4 @@ function OnPlayerSpawned(player)
   }
 
   give_player_items(inv_quick, items_quick)
-
 end

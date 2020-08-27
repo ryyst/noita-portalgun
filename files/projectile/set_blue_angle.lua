@@ -1,9 +1,17 @@
+dofile_once("data/scripts/lib/utilities.lua")
+dofile_once("mods/portalgun/files/utilities.lua")
 
 --
 -- Save the rotation so we can adjust portal correctly when it spawns
 --
 function shot(projectile)
-  local gun = GetUpdatedEntityID()
+  if not EntityHasTag(projectile, "portal_blue_projectile") then
+    return
+  end
+
+  local player = get_players()[1]
+  local gun = get_held_item(player)
+
   local x, y = EntityGetTransform(gun)
   local mouse_x, mouse_y = DEBUG_GetMouseWorld()
 

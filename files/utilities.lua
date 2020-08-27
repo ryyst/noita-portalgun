@@ -134,3 +134,18 @@ function EntityGetValue(entity, component_name, attr_name)
     EntityGetFirstComponentIncludingDisabled(entity, component_name), attr_name
   )
 end
+
+
+function get_held_item(animal)
+  local inv_comp = EntityGetFirstComponentIncludingDisabled(
+    animal, "Inventory2Component"
+  )
+
+  -- Although the component should always be present, something unexpected
+  -- might've still happened (eg. another mod messing around).
+  if not inv_comp then
+    return nil
+  end
+
+  return ComponentGetValue2(inv_comp, "mActiveItem")
+end

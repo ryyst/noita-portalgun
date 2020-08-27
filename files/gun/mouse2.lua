@@ -1,18 +1,24 @@
 dofile_once("data/scripts/lib/utilities.lua")
 dofile_once("mods/portalgun/files/utilities.lua")
 
--- Match these with the values from base projectile / action
-VELOCITY = 950
-COOLDOWN = 30
 
-local gun = GetUpdatedEntityID()
+-- TODO: Does this need to be matched as well? And to what?
+-- Blue projectile is a dynamic entity, not a static value to be fetched anytime.
+VELOCITY = 950
+
+-- CLICK HANDLER
 local player = get_players()[1]
 local ctrlComponent = EntityGetFirstComponentIncludingDisabled(player, "ControlsComponent")
 local holding_mouse2 = ComponentGetValue2(ctrlComponent, "mButtonDownRightClick")
 
+-- COOLDOWN
+local wand = get_held_item(player)
+local abilityComp = EntityGetFirstComponentIncludingDisabled(wand, "AbilityComponent")
+local reload_time = ComponentObjectGetValue2(abilityComp, "gun_config", "reload_time")
+
 
 function shoot()
-  local x, y = EntityGetTransform(gun)
+  local x, y = EntityGetTransform(wand)
   local mouse_x, mouse_y = DEBUG_GetMouseWorld()
 
   local angle = 0 - math.atan2( mouse_y - y, mouse_x - x )
@@ -31,7 +37,8 @@ end
 
 if (holding_mouse2) then
   local last_shot = tonumber(GlobalsGetValue("PG_ORANGE_SHOT_FRAME", "-999"))
-  if GameGetFrameNum() - last_shot > COOLDOWN then
+
+  if GameGetFrameNum() - last_shot > reload_time then
     shoot()
 
     -- Remove any existing siblings upon shooting a new portal

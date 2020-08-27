@@ -1,4 +1,4 @@
-<Entity name="$projectile_default">
+<Entity name="$projectile_default" tags="portal_blue_projectile">
   <Base file="mods/portalgun/files/projectile/base.xml" >
     <ProjectileComponent>
       <config_explosion

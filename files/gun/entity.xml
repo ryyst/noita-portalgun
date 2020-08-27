@@ -34,7 +34,7 @@
     play_spinning_animation="1"
     is_pickable="1"
     is_equipable_forced="1"
-    is_frozen="1"
+    is_frozen="0"
   ></ItemComponent>
 
   <SpriteComponent
@@ -76,20 +76,4 @@
     offset.x="13"
     offset.y="0"
   ></HotspotComponent>
-
-  <LuaComponent
-    _tags="enabled_in_hand"
-    script_source_file="mods/portalgun/files/gun/mouse2.lua"
-    execute_every_n_frame="1"
-  ></LuaComponent>
-
-  <LuaComponent
-    _tags="enabled_in_hand"
-    script_shot="mods/portalgun/files/projectile/set_blue_angle.lua"
-  ></LuaComponent>
-
-  <LuaComponent
-    _tags="enabled_in_hand"
-    script_enabled_changed="mods/portalgun/files/gun/portalgun_activate.lua"
-  ></LuaComponent>
 </Entity>
